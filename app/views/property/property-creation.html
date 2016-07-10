@@ -1,0 +1,182 @@
+<div class="container">
+    <h1>New Property</h1>
+
+    <form class="form-horizontal" ng-submit="createNewProperty()" ng-controller="PropertyCreationCtrl as pcc" name="mainForm">
+	    <uib-tabset active="stepIndex">
+		    <uib-tab index="0"  heading="Description">
+		    	<div ng-form="descriptionForm">
+			        <div class="control-group">
+			            <label class="control-label" for="inputCreatePropertyName">Name:</label>
+			            <div class="controls">
+			                <input type="text" id="inputCreatePropertyName" ng-model="pcc.property.name"/ required>
+			            </div>
+			        </div>
+			        <div class="control-group">
+			            <label class="control-label control-label-checkbox" for="inputCreatePropertyActive">Active:</label>
+			            <div class="controls">
+			                <input type="checkbox" id="inputCreatePropertyActive" ng-model="pcc.property.active"/ required>
+			            </div>
+			        </div>          
+			        <div class="control-group">
+			            <label class="control-label" for="inputCreatePropertyType">Type:</label>
+			            <div class="styled-select slate">
+			                <select id="inputCreatePropertyType" ng-model="pcc.property.type" ng-required="true">
+						      <option value="ROOM">Room</option>
+						      <option value="FLAT">Flat</option>
+						      <option value="HOUSE">House</option>
+						    </select>
+			            </div>
+			        </div>  
+			        <div class="control-group">
+			            <label class="control-label" for="inputCreatePropertyDescription">Description:</label>
+			            <div class="controls">
+			                <textarea id="inputCreatePropertyDescription" ng-model="pcc.property.description" required/>
+			            </div>
+			        </div>
+			        <div class="control-group">
+			            <label class="control-label" for="inputCreatePropertyNotes">Notes:</label>
+			            <div class="controls">
+			                <textarea class="input-control" id="inputCreatePropertyNotes" ng-model="pcc.property.notes"/>
+			            </div>
+			        </div> 
+		        </div>
+		    </uib-tab>
+		    <uib-tab index="1" heading="Details">
+		    	<div ng-form="detailsForm">
+			        <div class="control-group">
+			            <label class="control-label" for="inputCreatePropertyMaxGuest">Max Guests:</label>
+			            <div class="controls">
+			                <input type="number" id="inputCreatePropertyMaxGuest" ng-model="pcc.property.maxGuest"
+			                 min="0" max="99" required/>
+			            </div>
+			        </div> 
+			        <div class="control-group">
+			            <label class="control-label" for="inputCreatePropertyBedrooms">Bedrooms:</label>
+			            <div class="controls">
+			                <input type="number" id="inputCreatePropertyBedrooms" ng-model="pcc.property.bedRooms"
+			                min="0" max="99" required/>
+			            </div>
+			        </div> 
+			        <div class="control-group">
+			            <label class="control-label" for="inputCreatePropertyBathrooms">Bathrooms:</label>
+			            <div class="controls">
+			                <input type="number" id="inputCreatePropertyBathrooms" ng-model="pcc.property.bathRooms"
+			                min="0" max="99" required/>
+			            </div>
+			        </div>   
+			        <div class="control-group">
+			            <label class="control-label" for="inputCreatePropertyBeds">Beds:</label>
+			            <div class="controls">
+			                <input type="number" id="inputCreatePropertyBeds" ng-model="pcc.property.amountOfBed"
+			                min="0" max="99" required/>
+			            </div>
+			        </div>               
+			        <div class="control-group">
+			            <label class="control-label" for="inputCreatePropertyMinStay">Min. Stay:</label>
+			            <div class="controls">
+			                <input type="number" id="inputCreatePropertyMinStay" ng-model="pcc.property.minimumStay"
+			                min="0" max="99"/>
+			            </div>
+			        </div> 
+			        <div class="control-group">
+			            <label class="control-label" for="inputCreatePropertyMaxStay">Max. Stay:</label>
+			            <div class="controls">
+			                <input type="number" id="inputCreatePropertyMaxStay" ng-model="pcc.property.maximumStay"
+			                min="0" max="99"/>
+			            </div>
+			        </div> 
+		        </div>
+		    </uib-tab>
+		    <uib-tab index="2" heading="Price">
+		    	<div ng-form="priceForm">
+			       <div class="control-group">
+			            <label class="control-label" for="inputCreatePropertyPricePerNight">Price per night:</label>
+			            <div class="controls">
+			                <input type="number" id="inputCreatePropertyPricePerNight" ng-model="pcc.property.pricePerNight"/>
+			            </div>
+			        </div>                 
+			        <div class="control-group">
+			            <label class="control-label" for="inputCreatePropertyCleaningFee">Cleaning Fee:</label>
+			            <div class="controls">
+			                <input type="number" id="inputCreatePropertyCleaningFee" ng-model="pcc.property.cleaningFee"/>
+			            </div>
+			        </div>         
+			        <div class="control-group">
+			            <label class="control-label" for="inputCreatePropertyDeposit">Deposit:</label>
+			            <div class="controls">
+			                <input type="number" id="inputCreatePropertyDeposit" ng-model="pcc.property.deposit"/>
+			            </div>
+			        </div> 
+		        </div>
+		    </uib-tab>
+		    <uib-tab index="3" heading="Location">
+		    	<div ng-form="locationForm"> 
+					<uib-accordion>
+						<uib-accordion-group heading="Show Address" ng-init="pcc.status1.open = true" is-open="pcc.status1.open" is-disabled="true">
+					        <div class="control-group">
+					            <label class="control-label" for="inputPropertyStreet">Street:</label>
+					            <div class="controls">
+					                <input type="text" id="inputPropertyStreet" ng-model="property.streetAddress"/>
+					            </div>
+					        </div>         
+					        <div class="control-group">
+					            <label class="control-label" for="inputPropertyPostalCode">Postal Code:</label>
+					            <div class="controls">
+					                <input type="text" id="inputPropertyPostalCode" ng-model="property.postalCode"/>
+					            </div>
+					        </div> 
+					        <div class="control-group">
+					            <label class="control-label" for="inputPropertyCity">City:</label>
+					            <div class="controls">
+					                <input type="text" id="inputPropertyCity" ng-model="property.city"/>
+					            </div>
+					        </div> 
+					        <div class="control-group">
+					            <label class="control-label" for="inputPropertyProvince">Province:</label>
+					            <div class="controls">
+					                <input type="text" id="inputPropertyProvince" ng-model="property.stateProvince"/>
+					            </div>
+					        </div>				        
+					    </uib-accordion-group>
+					    <uib-accordion-group heading="Show Map" ng-init="pcc.status2.open = false" is-open="pcc.status2.open" is-disabled="true">
+							<ui-gmap-google-map ng-if="map.showMap" center="map.center" zoom="map.zoom" events="mapEvents" options="mapOptions" bounds="map.bounds"
+							ng-cloak>
+						        <ui-gmap-marker ng-repeat="m in map.markers" coords="m.coords" icon="m.icon" idkey="m.id"></ui-gmap-marker>
+						    </ui-gmap-google-map>
+					    </uib-accordion-group>		    
+					</uib-accordion>		    	
+		        </div> 
+		        <a ng-click="showMap()" class="btn btn-small btn-success" style="float: right">Show Map</a>
+		    </uib-tab>
+		    <uib-tab index="4" heading="Amenities" active="false">
+		    	<span>
+		    		<span style="float: left; margin-right: 5px">
+		                <label class="control-label" for="inputAmenitieProperty">Add Amenitie:</label>
+		                <div class="styled-select slate">
+		                    <select id="inputAmenitieProperty" ng-options="o.name for o in amenitieCatalog track by o.id" ng-model="pcc.selectedAmenitie">
+		    			    </select>
+		                </div>    
+	                </span>  
+	                <label class="control-label" for="amenitieControls"></label>          
+		            <div>       
+		            	<a ng-click="updateAmenitieSelection('add', pcc.selectedAmenitie)" class="btn btn-small btn-primary"><span class="glyphicon glyphicon-plus"></span></a>
+		            	<a ng-click="updateAmenitieSelection('remove', pcc.selectedAmenitie)" class="btn btn-small btn-primary"><span class="glyphicon glyphicon-minus"></span></a>
+		            </div>     
+               	</span>	    
+	            <div class="amenitiesListArea">
+	            	<label ng-disabled="true" ng-repeat="a in propertyAmenitiesList" class="btn btn-small btn-info amenitieLabel">
+	            	{{a.name}}</label>
+	            </div>
+		    </uib-tab>			    
+		</uib-tabset>                                          
+        <div class="control-group">
+            <div class="controls">
+              <!-- user-detail.html: -->
+              	<a ng-show="stepIndex != lastStep" ng-click="nextCreationStep(stepIndex)" class="btn btn-small btn-primary">Next</a>
+                <a ng-click="cancel()" class="btn btn-small">cancel</a>
+                <a ng-show="stepIndex == lastStep" ng-click="createNewProperty(property)" class="btn btn-small btn-primary">Save</a>
+            </div>
+        </div>
+    </form>
+</div>    
+

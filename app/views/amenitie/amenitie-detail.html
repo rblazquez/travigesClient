@@ -1,0 +1,26 @@
+<div class="container">
+    <h1>Amenitie detail</h1>
+
+    <form novalidate="novalidate" class="form-horizontal" ng-controller="AmenitieDetailCtrl">
+        <div class="control-group">
+            <label class="control-label" for="inputAmenitieName">Name:</label>
+            <div class="controls">
+                <input type="text" id="inputAmenitieName" ng-model="amenitie.name"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputAmenitieDescription">Description:</label>
+            <div class="controls">
+                <input type="text" id="inputAmenitieDescription" ng-model="amenitie.description"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+              <!-- user-detail.html: -->
+                <a ng-click="cancel()" class="btn btn-small">cancel</a>
+                <a ng-click="updateAmenitie()" class="btn btn-small btn-primary">update amenitie</a>
+            </div>
+        </div>
+    </form>
+</div>
+

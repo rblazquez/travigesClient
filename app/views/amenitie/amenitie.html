@@ -1,0 +1,54 @@
+<div class="container" ng-controller="AmenitieCtrl">
+<div class="page-header">
+<h1>Amenitie Catalog</h1>
+</div>
+
+<div class="span6">
+    <table class="table table-striped table-condensed">
+        <thead>
+        <tr>
+            <th style="min-width: 80px;">Name</th>
+            <th style="min-width: 80px;">Description</th>
+            <th style="width:20px;"> </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="amenitie in amenities">
+            <td><strong><a ng-click="editAmenitie(amenitie.id)">{{amenitie.name}}</a></strong></td>
+            <td>{{amenitie.decription}}</td>
+
+            <td><a ng-click="showDeletePopup(true, amenitie.id)" class="btn btn-small btn-danger"><span class="glyphicon glyphicon-trash"></span></a></td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="alert alert-block alert-error notification fade in" 
+        data-ng-show="displayDeletePopup">
+        <h6>Are you sure you want to delete this element?</h6>
+        <div class="form-controls-alert">
+            <a href="" class="btn" ng-click="showDeletePopup(false)">No</a>
+            <a href="" class="btn btn-danger" ng-click="deleteAmenitie(amenitieToDeleteId)">Yes</a>
+        </div>
+    </div><!-- end alert -->      
+    <a ng-click="createNewAmenitie()" class="btn btn-small btn-primary"><span class="glyphicon glyphicon-plus"></span></a>
+</div>
+
+
+<ul class="pagination">
+    <li ng-class="{disabled: pageStatus.number === 0}">
+        <a ng-show="pageStatus.number !== 0" ng-href="#{{basePath}}/amenitie?page=0&size={{pageStatus.size}}&sort={{sort}}">&laquo;</a>
+        <span ng-show="pageStatus.number === 0">&laquo;</span>
+    </li>
+    <li ng-class="{disabled: pageStatus.number === 0}">
+        <a ng-show="pageStatus.number !== 0" ng-href="#{{basePath}}/amenitie?page={{pageStatus.number - 1}}&size={{pageStatus.size}}&sort={{sort}}">Prev</a>
+        <span ng-show="pageStatus.number === 0">Prev</span>
+    </li>
+    <li ng-class="{disabled: pageStatus.number === pageStatus.totalPages - 1}">
+        <a ng-show="pageStatus.number !== pageStatus.totalPages - 1" ng-href="#{{basePath}}/amenitie?page={{pageStatus.number + 1}}&size={{pageStatus.size}}&sort={{sort}}">Next</a>
+        <span ng-show="pageStatus.number === pageStatus.totalPages - 1">Next</span>
+    </li>
+    <li ng-class="{disabled: pageStatus.number === pageStatus.totalPages - 1}">
+        <a ng-show="pageStatus.number !== pageStatus.totalPages - 1" ng-href="#{{basePath}}/amenitie?page={{pageStatus.totalPages - 1}}&size={{pageStatus.size}}&sort={{sort}}">&raquo;</a>
+        <span ng-show="pageStatus.number === pageStatus.totalPages - 1">&raquo;</span>
+    </li>
+</ul>
+</div>
