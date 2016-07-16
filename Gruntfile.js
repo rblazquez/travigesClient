@@ -25,9 +25,25 @@ module.exports = function (grunt) {
     dist: 'dist'
   };
 
+  // Static Webserver
+  grunt.loadNpmTasks('grunt-contrib-connect');  
+
   // Define the configuration for all the tasks
   grunt.initConfig({
-
+    pkg: grunt.file.readJSON('package.json'),
+    aws: grunt.file.readJSON('.aws.json'),
+    
+    s3: {
+      options: {
+        accessKeyId: "<%= aws.accessKeyId %>",
+        secretAccessKey: "<%= aws.secretAccessKey %>",
+        bucket: "<%= aws.bucket %>"
+      },
+      build: {
+        cwd: "dist",
+        src: "**"
+      }
+    },
     // Project settings
     yeoman: appConfig,
 
@@ -69,10 +85,17 @@ module.exports = function (grunt) {
 
     // The actual grunt server settings
     connect: {
+      server: {
+        options: {
+          port: 8000,
+          base: "dist",
+          keepalive: true
+        }
+      },         
       options: {
         port: 9000,
         // Change this to '0.0.0.0' to access the server from outside.
-        hostname: 'localhost',
+        hostname: '0.0.0.0',
         livereload: 35729
       },
       livereload: {
@@ -286,7 +309,7 @@ module.exports = function (grunt) {
     // uglify: {
     //   dist: {
     //     files: {
-    //       '<%= yeoman.dist %>/scripts/scripts.js': [
+     //      '<%= yeoman.dist %>/scripts/scripts.js': [
     //         '<%= yeoman.dist %>/scripts/scripts.js'
     //       ]
     //     }
@@ -321,10 +344,13 @@ module.exports = function (grunt) {
     htmlmin: {
       dist: {
         options: {
-          collapseWhitespace: true,
-          conservativeCollapse: true,
           collapseBooleanAttributes: true,
-          removeCommentsFromCDATA: true
+          collapseWhitespace: true,
+          removeAttributeQuotes: true,
+          removeEmptyAttributes: true,
+          removeRedundantAttributes: true,
+          removeScriptTypeAttributes: true,
+          removeStyleLinkTypeAttributes: true
         },
         files: [{
           expand: true,
@@ -478,6 +504,7 @@ module.exports = function (grunt) {
     'newer:jshint',
     'newer:jscs',
     'test',
-    'build'
+    'build',
+    'connect'
   ]);
 };

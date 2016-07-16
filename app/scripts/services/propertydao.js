@@ -11,7 +11,7 @@ angular.module('travigesfeApp')
   .service('propertyDao', function ($http, $q, commonRestDao) {
     // AngularJS will instantiate a singleton by calling "new" on this function
         // AngularJS will instantiate a singleton by calling "new" on this function
-    var baseUrl = 'http://localhost:8080/api/properties';
+    var baseUrl = 'http://travigesapi.eu-central-1.elasticbeanstalk.com:8080/api/properties';
 
     this.list = function(pageParam, sizeParam, sortParam) {
 		return commonRestDao.list(baseUrl, pageParam, sizeParam, sortParam);
