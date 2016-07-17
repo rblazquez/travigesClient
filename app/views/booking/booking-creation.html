@@ -1,0 +1,116 @@
+<div class="container">
+    <h2>New Booking</h2>
+
+    <form novalidate="novalidate" class="form-horizontal" ng-controller="BookingCreationCtrl as pcc">
+        <uib-tabset active="active">
+            <uib-tab index="0" active="true">
+                <uib-tab-heading>
+                    <span class="glyphicon glyphicon-info-sign gi-1_5x"></span>
+                </uib-tab-heading>             
+                <div class="control-group">
+                    <label class="control-label" for="inputBookingPropertyName">Property:</label>
+                    <div class="styled-select slate">
+                        <select id="inputBookingPropertyName" ng-options="o.name for o in properties track by o.id" data-ng-model="pcc.selectedProperty" ng-change="propertySelection(o)" ng-required="true">
+        			    </select>
+                    </div>
+                </div>        
+                <div class="control-group">
+                    <label class="control-label" for="inputBookingCode">Code:</label>
+                    <div class="controls">
+                        <input type="text" id="inputBookingCode" ng-model="booking.code"/ required>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="inputBookingStatus">Status:</label>
+                    <div class="styled-select slate">
+                        <select id="inputBookingStatus" ng-model="booking.status" ng-required="true">
+        			      <option value="REQUESTED">Requested</option>
+        			      <option value="CONFIRMED">Confirmed</option>
+        			      <option value="ACTIVE">Active</option>
+        			      <option value="PENDING">Pending</option>
+        			      <option value="CANCELLED">Cancelled</option>
+        			      <option value="CLOSED">Closed</option>
+        			    </select>
+                    </div>
+                </div>                         
+                <div class="control-group">
+                    <label class="control-label" for="inputBookingActive">Start Date:</label>
+                    <div class="controls">
+                        <p class="input-group">
+                          <input type="text" uib-datepicker-popup="dd-MM-yyyy" ng-model="booking.startDate" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close"/>
+                          <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="open1()">
+                            <i class="glyphicon glyphicon-calendar"></i></button>
+                          </span> 
+                        </p>             
+                    </div>
+                </div>          
+                <div class="control-group">
+                    <label class="control-label" for="inputBookingDescription">End Date:</label>
+                    <div class="controls">
+        	          <p class="input-group">
+                          <input type="text" uib-datepicker-popup="dd-MM-yyyy" ng-model="booking.endDate" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close"/>
+                          <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+                          </span>  
+                        </p>             
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="inputPropertyGuestNo">Guest No:</label>
+                    <div class="controls">
+                        <input type="text" id="inputPropertyGuestNo" ng-model="booking.guestNo"/>
+                    </div>
+                </div>     
+            </uib-tab>  
+            <uib-tab index="1" active="true">
+                <uib-tab-heading>
+                    <span class="glyphicon glyphicon-edit gi-1_5x"></span>
+                </uib-tab-heading>                                        
+                <div class="control-group">
+                    <label class="control-label" for="inputBookingSpecialRequests">Special Requests:</label>
+                    <div class="controls">
+                        <textarea class="input-control" id="inputBookingSpecialRequests" ng-model="booking.specialRequests"/>
+                    </div>
+                </div>   
+                <div class="control-group">
+                    <label class="control-label" for="inputBookingSpecialNotes">Notes:</label>
+                    <div class="controls">
+                        <textarea class="input-control" id="inputBookingSpecialNotes" ng-model="booking.notes"/>
+                    </div>
+                </div> 
+            </uib-tab>  
+            <uib-tab index="2" active="true">
+                <uib-tab-heading>
+                    <span class="glyphicon glyphicon-euro gi-1_5x"></span>
+                </uib-tab-heading>             
+                <div class="control-group">
+                    <label class="control-label" for="inputPropertyPricePerNight">Price per Night:</label>
+                    <div class="controls">
+                        <input type="text" id="inputPropertyPricePerNight" ng-model="booking.pricePerNight"/>
+                    </div>
+                </div>    
+                <div class="control-group">
+                    <label class="control-label" for="inputPropertyCleaningFee">Cleaning Fee:</label>
+                    <div class="controls">
+                        <input type="text" id="inputPropertyCleaningFee" ng-model="booking.cleaningFee"/>
+                    </div>
+                </div>       
+                <div class="control-group">
+                    <label class="control-label" for="inputPropertyDeposit">Deposit:</label>
+                    <div class="controls">
+                        <input type="text" id="inputPropertyDeposit" ng-model="booking.deposit"/>
+                    </div>
+                </div> 
+            </uib-tab>
+        </uib-tabset>                                                         
+        <div class="control-group">
+            <div class="controls">
+              <!-- user-detail.html: -->
+                <a ng-click="cancel()" class="btn btn-small">cancel</a>
+                <a ng-click="createNewBooking()" class="btn btn-small btn-primary">Save</a>
+            </div>
+        </div>                              
+    </form>
+</div>    
+

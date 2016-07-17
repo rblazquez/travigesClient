@@ -1,0 +1,69 @@
+<style>
+  .full button span {
+    background-color: limegreen;
+    border-radius: 32px;
+    color: black;
+  }
+  .partially button span {
+    background-color: orange;
+    border-radius: 32px;
+    color: black;
+  }
+</style>
+
+<div ng-controller="BookingcalendarCtrl">
+    <h2>Booking Calendar</h2>
+    <div class="bookingCalendar">
+      <uib-datepicker ng-model="selectedDate" class="well well-sm"
+      			 datepicker-options="options"
+      			 ng-change="selectedDateChanged()"></uib-datepicker>
+    </div>
+    <div class="span6">
+        <uib-tabset active="active">
+            <uib-tab index="0"  heading="Checkins" active="true">
+            	<div class="clearfix halfPageTab">
+				    <table class="table table-striped table-condensed">
+				        <thead>
+				        <tr>
+				            <th style="min-width: 80px;">Code</th>
+				            <th style="min-width: 80px;">Time</th>
+				            <th style="min-width: 80px;">Guest No.</th>
+				            <th style="min-width: 80px;">Status</th>
+				        </tr>
+				        </thead>
+				        <tbody>
+				        <tr ng-repeat="booking in startsOnSelectedDate">
+				            <td><strong><a ng-click="editBooking(booking.id)">{{booking.code}}</a></strong></td>
+				            <td ng-bind="booking.startDate | date:'HH:mm:ss'"></td>
+				            <td>{{booking.guestNo}}</td>
+				            <td>{{booking.status}}</td>
+				        </tr>
+				        </tbody>
+				    </table>  
+			    </div> 
+	    	</uib-tab> 
+	    	<uib-tab index="1"  heading="Checkouts" active="true">
+            	<div class="clearfix halfPageTab">
+		    		<table class="table table-striped table-condensed">
+				        <thead>
+				        <tr>
+				            <th style="min-width: 80px;">Code</th>
+				            <th style="min-width: 80px;">Time</th>
+				            <th style="min-width: 80px;">Guest No.</th>
+				            <th style="min-width: 80px;">Status</th>
+				        </tr>
+				        </thead>
+				        <tbody>
+				        <tr ng-repeat="booking in startsOnSelectedDate">
+				            <td><strong><a ng-click="editBooking(booking.id)">{{booking.code}}</a></strong></td>
+				            <td ng-bind="booking.endDate | date:'HH:mm:ss'"></td>
+				            <td>{{booking.guestNo}}</td>
+				            <td>{{booking.status}}</td>
+				        </tr>
+				        </tbody>
+				    </table> 
+			    </div>	    	
+	    	</uib-tab>
+    	</uib-tabset>	
+    </div>
+</div>

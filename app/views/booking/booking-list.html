@@ -1,0 +1,67 @@
+<div class="container" ng-controller="BookingListCtrl">
+<div class="page-header">
+<h2>Booking List</h2>
+</div>
+
+<div class="span6">
+    <table class="table table-striped table-condensed">
+        <thead>
+        <tr>
+            <th style="min-width: 60px;">Code</th>
+            <th style="min-width: 60px;">Starts</th>
+            <th style="min-width: 60px;">Ends</th>
+            <th style="min-width: 60px;">Status</th>
+            <th style="width:20px;"> </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="booking in bookings">
+            <td><strong><a ng-click="editBooking(booking.id)">{{booking.code}}</a></strong></td>
+            <td>{{booking.startDate | date : 'dd/MM/yy'}}</td>
+            <td>{{booking.endDate | date : 'dd/MM/yy'}}</td>
+            <td ng-switch on="booking.status"><span>
+                <span class="glyphicon glyphicon-download gi-2x" ng-switch-when="REQUESTED"></span>
+                <span class="glyphicon glyphicon-ok-circle gi-2x" ng-switch-when="CONFIRMED"></span>
+                <span class="glyphicon glyphicon-play-circle gi-2x" ng-switch-when="ACTIVE"></span>
+                <span class="glyphicon glyphicon-alert gi-2x" ng-switch-when="PENDING"></span>
+                <span class="glyphicon glyphicon-remove-circle gi-2x" ng-switch-when="CANCELLED"></span>
+                <span class="glyphicon glyphicon-upload gi-2x" ng-switch-when="CLOSED"></span>
+                <img src="images/yeoman.png" alt="Oops" ng-switch-default>
+            </td>                                                                    
+            <td><a ng-click="showDeletePopup(true, booking.id)" class="btn btn-small btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="alert alert-block alert-error notification fade in" 
+        data-ng-show="displayDeletePopup">
+        <h6>Are you sure you want to delete this element?</h6>
+        <div class="form-controls-alert">
+            <a href="" class="btn" ng-click="showDeletePopup(false)">No</a>
+            <a href="" class="btn btn-danger" ng-click="deleteBooking(bookingToDeleteId)">Yes</a>
+        </div>
+    </div><!-- end alert -->      
+    <a ng-click="createNewBooking()" class="btn btn-small btn-primary"><span class="glyphicon glyphicon-plus"></span></a>
+</div>
+
+
+<ul class="pagination">
+    <li ng-class="{disabled: pageStatus.number === 0}">
+        <a ng-show="pageStatus.number !== 0" ng-href="#{{basePath}}/bookings?page=0&size={{pageStatus.size}}&sort={{sort}}">&laquo;</a>
+        <span ng-show="pageStatus.number === 0">&laquo;</span>
+    </li>
+    <li ng-class="{disabled: pageStatus.number === 0}">
+        <a ng-show="pageStatus.number !== 0" ng-href="#{{basePath}}/bookings?page={{pageStatus.number - 1}}&size={{pageStatus.size}}&sort={{sort}}">Prev</a>
+        <span ng-show="pageStatus.number === 0">Prev</span>
+    </li>
+    <li ng-class="{disabled: pageStatus.number === pageStatus.totalPages - 1}">
+        <a ng-show="pageStatus.number !== pageStatus.totalPages - 1" ng-href="#{{basePath}}/bookings?page={{pageStatus.number + 1}}&size={{pageStatus.size}}&sort={{sort}}">Next</a>
+        <span ng-show="pageStatus.number === pageStatus.totalPages - 1">Next</span>
+    </li>
+    <li ng-class="{disabled: pageStatus.number === pageStatus.totalPages - 1}">
+        <a ng-show="pageStatus.number !== pageStatus.totalPages - 1" ng-href="#{{basePath}}/bookings?page={{pageStatus.totalPages - 1}}&size={{pageStatus.size}}&sort={{sort}}">&raquo;</a>
+        <span ng-show="pageStatus.number === pageStatus.totalPages - 1">&raquo;</span>
+    </li>
+</ul>
+</div>
+
