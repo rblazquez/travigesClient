@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title></title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />    
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
@@ -45,6 +45,8 @@
             <li><a ng-href="#/amenitie">Amenities</a></li>
             <li><a ng-href="#/about">About</a></li>
             <li><a ng-href="#/">Contact</a></li>
+            <li ng-controller="LoginCtrl"><a ng-href='#/' ng-click="login()">Login</a></li>
+            <li ng-controller="LoginCtrl"><a ng-href='#/' ng-click="logout()">Logout</a></li>
           </ul>
         </div>
       </nav>
@@ -67,7 +69,7 @@
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-      
+
       ga('create', 'UA-80893569-1', 'auto');
       ga('send', 'pageview');
     </script>    
@@ -97,9 +99,12 @@
     <script src="bower_components/angular-google-maps/dist/angular-google-maps.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
-
+    <script type="text/javascript" src="https://cdn.auth0.com/js/lock-7.12.min.js"></script>
+    <script type="text/javascript" src="https://cdn.auth0.com/w2/auth0-angular-4.js"></script>
+        
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
+        <script src="scripts/config.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/about.js"></script>
         <script src="scripts/controllers/amenitie.js"></script>
@@ -120,6 +125,7 @@
         <script src="scripts/controllers/booking-creation.js"></script>
         <script src="scripts/services/uidgenerator.js"></script>
         <script src="scripts/controllers/bookingcalendar.js"></script>
+        <script src="scripts/controllers/login.js"></script>
         <!-- endbuild -->
 </body>
 </html>
