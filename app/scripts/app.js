@@ -2,7 +2,8 @@
 
 var app = angular.module('travigesfeApp', ['ngResource', 'ngRoute', 'spring-data-rest'
                                 , 'ui.bootstrap', 'uiGmapgoogle-maps'
-                                , 'auth0', 'angular-storage', 'angular-jwt', 'uiGmapgoogle-maps'])
+                                , 'auth0', 'angular-storage', 'angular-jwt', 'uiGmapgoogle-maps'
+                                , 'ui.bootstrap.alerts'])
   .config(['$routeProvider', 'authProvider', configFunction])
   .config(['$httpProvider', 'jwtInterceptorProvider', function($httpProvider, jwtInterceptorProvider) {
     jwtInterceptorProvider.tokenGetter = ['store', function(store) {
@@ -16,7 +17,7 @@ var app = angular.module('travigesfeApp', ['ngResource', 'ngRoute', 'spring-data
           v: '3.20',
           libraries: 'weather,geometry,visualization'
       });
-  }])   
+  }])  
   .run(['$rootScope', 'auth', 'store', 'jwtHelper', '$location', runFunction])
 
   function configFunction($routeProvider, authProvider) {
@@ -124,7 +125,7 @@ var app = angular.module('travigesfeApp', ['ngResource', 'ngRoute', 'spring-data
     });         
   };  
 
-function runFunction ($rootScope, auth, store, jwtHelper, $location){
+function runFunction ($rootScope, auth, store, jwtHelper, $location){  
    // Listen to a location change event
   $rootScope.$on('$locationChangeStart', function() {
     // Grab the user's token

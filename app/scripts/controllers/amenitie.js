@@ -9,11 +9,14 @@
  */
 angular.module('travigesfeApp')
 	.controller('AmenitieCtrl', function($scope, $http, $location, $route
-										, SpringDataRestAdapter, halPagination, amenitieDao) {
+										, SpringDataRestAdapter, halPagination, amenitieDao
+										, AlertService) {
 		var search = $location.search();
 		var pageParam = search.page || 0;
 		var sizeParam = search.size || 6;
 		var sortParam = search.sort || 'desc';
+
+		AlertService.error('Something went wrong');
 
 		$scope.displayDeletePopup = false;
 		$scope.filteredTodos = [];
