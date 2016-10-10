@@ -8,10 +8,10 @@
  * Service in the travigesfeApp.
  */
 angular.module('travigesfeApp')
-  .service('bookingDao', function ($http, $q, $filter, commonRestDao) {
+  .service('bookingDao', function ($http, $q, $filter, commonRestDao, config) {
     // AngularJS will instantiate a singleton by calling "new" on this function
         // AngularJS will instantiate a singleton by calling "new" on this function
-    var baseUrl = 'http://travigesapi.eu-central-1.elasticbeanstalk.com:8080/api/bookings';
+        var baseUrl = config.baseUrl + 'bookings';
 
     this.list = function(pageParam, sizeParam, sortParam) {
 		return commonRestDao.list(baseUrl, pageParam, sizeParam, sortParam);
